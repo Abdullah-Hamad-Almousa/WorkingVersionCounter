@@ -1,0 +1,16 @@
+package com.mysticbyte.counter
+
+import android.content.Context
+import android.os.Build
+
+class AndroidPlatform : Platform {
+    override val name: String = "Android ${Build.VERSION.SDK_INT}"
+}
+
+actual fun getPlatform(): Platform = AndroidPlatform()
+
+lateinit var appContext: Context
+
+actual fun getDataStoreFilePath(): String {
+    return appContext.filesDir.resolve("datastore/counter.preferences_pb").absolutePath
+}
